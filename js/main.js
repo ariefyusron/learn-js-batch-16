@@ -187,60 +187,80 @@
 // })
 
 
-// let dataTodoList = []
+let dataTodoList = []
 
-// console.log(dataTodoList)
+const addTodoList = (desc) => {
+  dataTodoList = [
+    {
+      desc: desc,
+      status: 'todo'
+    },
+    ...dataTodoList,
+  ]
+}
 
-// const addTodoList = (desc) => {
-//   dataTodoList = [
-//     {
-//       desc: desc,
-//       status: 'todo'
-//     },
-//     ...dataTodoList,
-//   ]
-// }
+const deleteData = (index) => {
+  dataTodoList = dataTodoList.filter((e, i) => {
+    return i !== index
+  })
+}
 
-// const deleteData = (index) => {
-//   dataTodoList = dataTodoList.filter((e, i) => {
-//     return i !== index
-//   })
-// }
+const deleteAllData = () => {
+  dataTodoList = []
+}
 
-// const deleteAllData = () => {
-//   dataTodoList = []
-// }
+const editData = (index, data) => {
+  dataTodoList[index] = {
+    ...dataTodoList[index],
+    ...data
+  }
+}
 
-// const editData = (index, data) => {
-//   dataTodoList[index] = {
-//     ...dataTodoList[index],
-//     ...data
-//   }
-// }
+const launchPage = () => {
+  const container = document.getElementById('container')
+  container.innerHTML = ''
 
-// addTodoList('cuci motor')
-// console.log(dataTodoList)
+  if(dataTodoList.length === 0) {
+    const p = document.createElement('p')
+    p.textContent = 'Tidak ada todo list'
 
-// addTodoList('service motor')
-// console.log(dataTodoList)
+    container.appendChild(p)
+  } else {
+    const ul = document.createElement('ul')
 
-// deleteData(0)
-// console.log(dataTodoList)
+    dataTodoList.forEach((item) => {
+      const li = document.createElement('li')
+      li.textContent = `${item.desc} - ${item.status}`
 
-// addTodoList('service motor')
-// console.log(dataTodoList)
+      ul.appendChild(li)
+    })
 
-// deleteAllData()
-// console.log(dataTodoList)
+    container.appendChild(ul)
+  }
+}
 
-// addTodoList('cuci motor')
-// console.log(dataTodoList)
+const renderAddTodo = () => {
+  const buttonCreateTodo = document.getElementById('buttonCreateTodo')
 
-// addTodoList('service motor')
-// console.log(dataTodoList)
+  buttonCreateTodo.addEventListener('click', () => {
+    addTodoList('Cuci Motor')
+    launchPage()
+  })
+}
 
-// editData(1, { status: 'inprogress' })
-// console.log(dataTodoList)
+const renderDeleteAllTodo = () => {
+  const buttonDeleteAllTodo = document.getElementById('buttonDeleteAllTodo')
+
+  buttonDeleteAllTodo.addEventListener('click', () => {
+    deleteAllData()
+    launchPage()
+  })
+}
+
+launchPage()
+renderAddTodo()
+renderDeleteAllTodo()
+
 
 
 // const title = document.getElementById('title')
@@ -253,39 +273,39 @@
 // `
 
 
-const showPage = () => {
-  const container = document.getElementById('container')
+// const showPage = () => {
+//   const container = document.getElementById('container')
 
-  const h1 = document.createElement('h1')
-  h1.textContent = "Ini H1"
-  h1.className = "title"
-  h1.style.color = "red"
+//   const h1 = document.createElement('h1')
+//   h1.textContent = "Ini H1"
+//   h1.className = "title"
+//   h1.style.color = "red"
 
-  const p = document.createElement('p')
-  p.textContent = "Ini Paragrafh"
+//   const p = document.createElement('p')
+//   p.textContent = "Ini Paragrafh"
 
-  const fragment = document.createDocumentFragment()
-  fragment.appendChild(h1)
-  fragment.appendChild(p)
+//   const fragment = document.createDocumentFragment()
+//   fragment.appendChild(h1)
+//   fragment.appendChild(p)
 
-  container.appendChild(fragment)
-}
+//   container.appendChild(fragment)
+// }
 
-const hidePage = () => {
-  const container = document.getElementById('container')
-  container.innerHTML = ''
-}
+// const hidePage = () => {
+//   const container = document.getElementById('container')
+//   container.innerHTML = ''
+// }
 
-let isShow = false
-const buttonShowPage = document.getElementById('buttonShowPage')
-buttonShowPage.addEventListener('click', () => {
-  if(isShow){
-    hidePage()
-    buttonShowPage.textContent = 'Show Page'
-  } else {
-    showPage()
-    buttonShowPage.textContent = 'Hide Page'
-  }
+// let isShow = false
+// const buttonShowPage = document.getElementById('buttonShowPage')
+// buttonShowPage.addEventListener('click', () => {
+//   if(isShow){
+//     hidePage()
+//     buttonShowPage.textContent = 'Show Page'
+//   } else {
+//     showPage()
+//     buttonShowPage.textContent = 'Hide Page'
+//   }
 
-  isShow = !isShow
-})
+//   isShow = !isShow
+// })
