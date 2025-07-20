@@ -187,41 +187,105 @@
 // })
 
 
-let dataTodoList = []
+// let dataTodoList = []
 
-console.log(dataTodoList)
+// console.log(dataTodoList)
 
-const addTodoList = (desc) => {
-  dataTodoList = [
-    {
-      desc: desc,
-      status: 'todo'
-    },
-    ...dataTodoList,
-  ]
+// const addTodoList = (desc) => {
+//   dataTodoList = [
+//     {
+//       desc: desc,
+//       status: 'todo'
+//     },
+//     ...dataTodoList,
+//   ]
+// }
+
+// const deleteData = (index) => {
+//   dataTodoList = dataTodoList.filter((e, i) => {
+//     return i !== index
+//   })
+// }
+
+// const deleteAllData = () => {
+//   dataTodoList = []
+// }
+
+// const editData = (index, data) => {
+//   dataTodoList[index] = {
+//     ...dataTodoList[index],
+//     ...data
+//   }
+// }
+
+// addTodoList('cuci motor')
+// console.log(dataTodoList)
+
+// addTodoList('service motor')
+// console.log(dataTodoList)
+
+// deleteData(0)
+// console.log(dataTodoList)
+
+// addTodoList('service motor')
+// console.log(dataTodoList)
+
+// deleteAllData()
+// console.log(dataTodoList)
+
+// addTodoList('cuci motor')
+// console.log(dataTodoList)
+
+// addTodoList('service motor')
+// console.log(dataTodoList)
+
+// editData(1, { status: 'inprogress' })
+// console.log(dataTodoList)
+
+
+// const title = document.getElementById('title')
+// title.textContent = "Hello World!!!"
+
+// const container = document.getElementById('container')
+// container.innerHTML = `
+//   <h1>Ini H1</h1>
+//   <p>Ini Paragrafh</p>
+// `
+
+
+const showPage = () => {
+  const container = document.getElementById('container')
+
+  const h1 = document.createElement('h1')
+  h1.textContent = "Ini H1"
+  h1.className = "title"
+  h1.style.color = "red"
+
+  const p = document.createElement('p')
+  p.textContent = "Ini Paragrafh"
+
+  const fragment = document.createDocumentFragment()
+  fragment.appendChild(h1)
+  fragment.appendChild(p)
+
+  container.appendChild(fragment)
 }
 
-const deleteData = (index) => {
-  dataTodoList = dataTodoList.filter((e, i) => {
-    return i !== index
-  })
+const hidePage = () => {
+  const container = document.getElementById('container')
+  container.innerHTML = ''
 }
 
-const deleteAllData = () => {
-  dataTodoList = []
-}
+let isShow = false
+const buttonShowPage = document.getElementById('buttonShowPage')
+buttonShowPage.addEventListener('click', () => {
+  if(isShow){
+    hidePage()
+    buttonShowPage.textContent = 'Show Page'
+  } else {
+    showPage()
+    buttonShowPage.textContent = 'Hide Page'
+  }
 
-addTodoList('cuci motor')
-console.log(dataTodoList)
-
-addTodoList('service motor')
-console.log(dataTodoList)
-
-deleteData(0)
-console.log(dataTodoList)
-
-addTodoList('service motor')
-console.log(dataTodoList)
-
-deleteAllData()
-console.log(dataTodoList)
+  isShow = !isShow
+})
