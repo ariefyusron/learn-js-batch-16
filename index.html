@@ -15,31 +15,17 @@
   <br />
   <br />
 
-  <input type="text" id="descTodo" placeholder="Masukkan Desc" />
-  <br />
-  <br />
-  <select id="statusTodo">
-    <option value="todo">Todo</option>
-    <option value="onprogress">On Progress</option>
-    <option value="done">Done</option>
-  </select>
-  <br />
-  <br />
-  <br />
-  <div id="alertError"></div>
-  <button id="buttonAddTodo">Tambah</button>
-
-  <br />
-  <br />
-  <br />
-  <br />
-
   <h1>Form</h1>
   <form id="form">
-    <input name="name" placeholder="Masukkan Nama" />
-    <input name="age" placeholder="Masukkan Umur" />
-    <button type="submit">Simpan</button>
+    <input type="text" name="descTodo" placeholder="Masukkan Desc" />
+    <select name="statusTodo">
+      <option value="todo">Todo</option>
+      <option value="onprogress">On Progress</option>
+      <option value="done">Done</option>
+    </select>
+    <button type="submit">Tambah</button>
   </form>
+  <div id="alertError"></div>
 
   <script src="js/main.js"></script>
 </body>

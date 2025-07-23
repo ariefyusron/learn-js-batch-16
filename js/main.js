@@ -250,22 +250,22 @@ renderDeleteAllTodo()
 
 
 
-//Form
-const descTodo = document.getElementById('descTodo')
-const statusTodo = document.getElementById('statusTodo')
-const buttonAddTodo = document.getElementById('buttonAddTodo')
 
+const form = document.getElementById('form')
 const alertError = document.getElementById('alertError')
 
-const handleAddTodo = () => {
-  if(descTodo.value !== '') {
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  if(e.target.descTodo.value !== '') {
     addTodoList({
-      desc: descTodo.value,
-      status: statusTodo.value
+      desc: e.target.descTodo.value,
+      status: e.target.statusTodo.value
     })
-    descTodo.value = ''
-    statusTodo.value = 'todo'
-    document.getElementById('textError').remove()
+    
+    document.getElementById('textError')?.remove()
+
+    form.reset()
     launchPage()
   } else {
     const textError = document.createElement('p')
@@ -274,27 +274,6 @@ const handleAddTodo = () => {
     textError.textContent = 'Desc Tidak Boleh Kosong!'
     alertError.replaceChildren(textError)
   }
-}
-
-descTodo.addEventListener('keydown', (e) => {
-  if(e.key === 'Enter') {
-    handleAddTodo()
-  }
-})
-
-buttonAddTodo.addEventListener('click', () => {
-  handleAddTodo()
-})
-
-
-
-const form = document.getElementById('form')
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  console.log(e.target.name.value)
-  console.log(e.target.age.value)
-  form.reset()
 })
 
 
