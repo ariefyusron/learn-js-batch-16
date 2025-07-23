@@ -189,12 +189,9 @@
 
 let dataTodoList = []
 
-const addTodoList = (desc) => {
+const addTodoList = (data) => {
   dataTodoList = [
-    {
-      desc: desc,
-      status: 'todo'
-    },
+    data,
     ...dataTodoList,
   ]
 }
@@ -239,15 +236,6 @@ const launchPage = () => {
   }
 }
 
-const renderAddTodo = () => {
-  const buttonCreateTodo = document.getElementById('buttonCreateTodo')
-
-  buttonCreateTodo.addEventListener('click', () => {
-    addTodoList('Cuci Motor')
-    launchPage()
-  })
-}
-
 const renderDeleteAllTodo = () => {
   const buttonDeleteAllTodo = document.getElementById('buttonDeleteAllTodo')
 
@@ -258,8 +246,46 @@ const renderDeleteAllTodo = () => {
 }
 
 launchPage()
-renderAddTodo()
 renderDeleteAllTodo()
+
+
+
+//Form
+const descTodo = document.getElementById('descTodo')
+const statusTodo = document.getElementById('statusTodo')
+const buttonAddTodo = document.getElementById('buttonAddTodo')
+
+const alertError = document.getElementById('alertError')
+
+const handleAddTodo = () => {
+  if(descTodo.value !== '') {
+    addTodoList({
+      desc: descTodo.value,
+      status: statusTodo.value
+    })
+    descTodo.value = ''
+    statusTodo.value = 'todo'
+    document.getElementById('textError').remove()
+    launchPage()
+  } else {
+    const textError = document.createElement('p')
+    textError.id = 'textError'
+    textError.style.color = 'red'
+    textError.textContent = 'Desc Tidak Boleh Kosong!'
+    alertError.replaceChildren(textError)
+  }
+}
+
+descTodo.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') {
+    handleAddTodo()
+  }
+})
+
+buttonAddTodo.addEventListener('click', () => {
+  handleAddTodo()
+})
+
 
 
 
