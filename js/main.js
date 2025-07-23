@@ -186,13 +186,7 @@
 //   console.log(item)
 // })
 
-let dataTodoList
-
-if(localStorage.getItem('todolist') !== null){
-  dataTodoList = JSON.parse(localStorage.getItem('todolist'))
-} else {
-  dataTodoList = []
-}
+let dataTodoList = localStorage.getItem('todolist') !== null ? JSON.parse(localStorage.getItem('todolist')) : []
 
 const addTodoList = (data) => {
   dataTodoList = [
