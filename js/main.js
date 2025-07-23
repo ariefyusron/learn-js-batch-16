@@ -288,6 +288,16 @@ buttonAddTodo.addEventListener('click', () => {
 
 
 
+const form = document.getElementById('form')
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  console.log(e.target.name.value)
+  console.log(e.target.age.value)
+  form.reset()
+})
+
+
 
 // const title = document.getElementById('title')
 // title.textContent = "Hello World!!!"
