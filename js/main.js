@@ -186,14 +186,20 @@
 //   console.log(item)
 // })
 
+let dataTodoList
 
-let dataTodoList = []
+if(localStorage.getItem('todolist') !== null){
+  dataTodoList = JSON.parse(localStorage.getItem('todolist'))
+} else {
+  dataTodoList = []
+}
 
 const addTodoList = (data) => {
   dataTodoList = [
     data,
     ...dataTodoList,
   ]
+  localStorage.setItem('todolist', JSON.stringify(dataTodoList))
 }
 
 const deleteData = (index) => {
@@ -204,6 +210,7 @@ const deleteData = (index) => {
 
 const deleteAllData = () => {
   dataTodoList = []
+  localStorage.removeItem('todolist')
 }
 
 const editData = (index, data) => {
