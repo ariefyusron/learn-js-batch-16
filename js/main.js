@@ -278,18 +278,81 @@ form.addEventListener('submit', (e) => {
 })
 
 
-console.log('start')
+// console.log('start')
 
-setTimeout(() => {
-  console.log('timeout 2 detik')
-}, 2000);
+// setTimeout(() => {
+//   console.log('timeout 2 detik')
+// }, 2000);
 
-setInterval(() => {
-  console.log('interval 2 detik')
-}, 2000);
+// setInterval(() => {
+//   console.log('interval 2 detik')
+// }, 2000);
 
-console.log('end')
+// console.log('end')
 
+let resultFetchData = []
+
+const showLoading = () => {
+  const container = document.getElementById('container-fetch')
+  container.innerHTML = '<p>Loading...</p>'
+}
+
+const launchPageFromFetch = () => {
+  const container = document.getElementById('container-fetch')
+  container.innerHTML = ''
+
+  if(resultFetchData.length === 0) {
+    const p = document.createElement('p')
+    p.textContent = 'Tidak ada todo list'
+
+    container.appendChild(p)
+  } else {
+    const ul = document.createElement('ul')
+
+    resultFetchData.forEach((item) => {
+      const li = document.createElement('li')
+      li.textContent = `${item.title} - ${item.id}`
+
+      ul.appendChild(li)
+    })
+
+    container.appendChild(ul)
+  }
+}
+
+const fetchData = () => {
+  showLoading()
+
+  fetch('https://jsonplaceholder.typicode.com/todos')
+    .then((res) => res.json())
+    .then((res) => {
+      resultFetchData = res
+      launchPageFromFetch()
+    })
+    .catch((res) => {
+      console.log('error', res)
+    })
+    .finally(() => {
+      console.log('finally')
+    })
+}
+
+const fetchDataOther = async () => {
+  try {
+    showLoading()
+
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+    resultFetchData = await res.json()
+
+    launchPageFromFetch()
+  } catch (err) {
+    console.log('error')
+  } finally {
+    console.log('finally')
+  }
+}
+
+fetchDataOther()
 
 
 
