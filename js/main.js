@@ -278,6 +278,20 @@ form.addEventListener('submit', (e) => {
 })
 
 
+console.log('start')
+
+setTimeout(() => {
+  console.log('timeout 2 detik')
+}, 2000);
+
+setInterval(() => {
+  console.log('interval 2 detik')
+}, 2000);
+
+console.log('end')
+
+
+
 
 // const title = document.getElementById('title')
 // title.textContent = "Hello World!!!"
